@@ -3,57 +3,71 @@ window.onload = function() {
 
   console.log(body);
 
+  const createDuck = () => {
+    let duckDiv = document.createElement('div');
+      duckDiv.classList.add('duck');
+      document.body.appendChild(duckDiv);
+
+    setInterval(function() {duckDiv.classList.toggle('flap'); }, 250);
+    duckDiv.addEventListener('click', function() {
+      duckDiv.classList.add('shot');
+      setTimeout(function(){document.querySelector('.shot').remove();}, 500);
+      setTimeout(function(){
+      if (document.getElementsByClassName('duck').length === 0 ) {
+        alert(`Winner, winner, duck dinner!`);
+      }
+    }, 1000);
+  })
+    const moveDuck = () => {
+      let left = Math.random() * window.innerWidth
+      let top = Math.random() * window.innerHeight
+      duckDiv.style.left = left + 'px'
+      duckDiv.style.top = top + 'px'
+      };
+    moveDuck()
+
+    setInterval(moveDuck, 1000)
+    duckDiv.addEventListener('click', () =>
+    duckDiv.classList.add('shot'))
+
+    return duckDiv
+    }
+
+  for (let i = 0; i < 5; i++){
+      createDuck()
+  }
+  const checkForWinner = () => {
+    console.log(document.getElementsByClassName('duck').length);
+  }
+  checkForWinner()
+};
   // 1. Create a <div> with the class "duck" and add it to the body.  Do this step by step
   // ( 1. create the element
   //   2. add a class to the element
   //   3. append the element to the body )
-
-
-
+  //
+  //
+  //
   // 2. Next, use setInterval to toggle the "flap" class on the duck every 250 ms (1/4 second)
   // https://www.w3schools.com/jsref/met_win_setinterval.asp
-
+  //
   // 3. Fantastic!  Now, let's move the duck using CSS "top" and "left". Create
   // a function `moveDuck` that takes a duck object as an argument and sets the
   // "top" and "left" CSS properties.
   // HINT: Use Math.random() * window.innerWidth    for "left"
   //       And Math.random() * window.innerHeight   for "top"
-
-// 4. Try making the duck move to a different location every second (what did we use to do this several lines up??)
-
+  //
+  // 4. Try making the duck move to a different location every second (what did we use to do this several lines up??)
+  //
   // 5. Congratulations! Move on to part 2!
-
+  //
   // ---------------------------- PART 2 ---------------------------------
-
+  //
   // 6. Things are getting a bit messy. Let's create
   //    a "function" called createDuck() that does everything in 1-4
   //    and "returns" the duck object
-const createDuck = () => {
-  let duckDiv = document.createElement('div');
-    duckDiv.classList.add('duck');
-    document.body.appendChild(duckDiv);
 
-    setInterval(function(){
-  duckDiv.classList.toggle('flap');
-  }, 250);
 
-  const moveDuck = () => {
-    console.log('one')
-    let left = Math.random() * window.innerWidth
-    let top = Math.random() * window.innerHeight
-    duckDiv.style.left = left + 'px'
-    duckDiv.style.top = top + 'px'
-  }
-moveDuck()
-
-setInterval(moveDuck, 1000)
-
-return duckDiv
-}
-
-for (let i = 0; i < 5; i++){
-  createDuck()
-}
   // 7. Now, let's create lots of ducks!  Use a "for" loop to create 5 ducks
   //    using our fancy new createDuck() function
 
@@ -77,10 +91,9 @@ for (let i = 0; i < 5; i++){
   //     to see if there are any ducks left. (How can we check the DOM for more than one element?, and how can we see how many elements we get back) If not, alert "YOU WIN!"
 
   // 14. BONUS: The ducks are moving pretty erratically, can you think
-  //     of a way to adjust the ducks speed based on how far needs to move?
+  //     of a way to adjust the ducks speed based on how far they need to move?
 
   // 15. BONUS: Add the "left" and "right" class to the duck based on the
   //     direction the duck is flying and change the way the duck is facing
 
   // FIN. You win 1 trillion tokens.  Play the day away!
-};
